@@ -22,7 +22,7 @@ type BaseTableProps<T> = {
   api: BaseCtx<T>;
 };
 
-export const BaseTable = <T extends object>({
+export const BaseTable = <T extends { id: string }>({
   api,
   fetcher,
 }: BaseTableProps<T>) => {
@@ -46,7 +46,9 @@ export const BaseTable = <T extends object>({
   return (
     <div>
       {isLoading && <h1>LOADING...</h1>}
-      {!isLoading && JSON.stringify(tableData.query)}
+      {!isLoading && (
+        <span className="text-xs">User id: {tableData.query[0].id}</span>
+      )}
     </div>
   );
 };
