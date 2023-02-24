@@ -1,6 +1,6 @@
-import React from 'react';
+import { UsersPage } from './modules/Users';
 import ReactDOM from 'react-dom/client';
-import UsersPage from './UsersPage';
+import React from 'react';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(

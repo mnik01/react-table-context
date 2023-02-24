@@ -1,5 +1,5 @@
-import { Sorting, TableDataResponse, User } from './types';
-import { UserTableAPI } from './UserTableContext';
+import { User } from '../Users/types';
+import { UserTableAPI } from '../Users/UserTableContext';
 
 enum TableStateActions {
   SET_TABLE_DATA = 'SET_TABLE_DATA',

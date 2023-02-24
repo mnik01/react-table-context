@@ -1,8 +1,8 @@
 import { createContext } from 'react';
-import { TableAPI } from './BaseTable';
+import { TableAPI } from '../Users/Components/BaseTable';
 import { User } from './types';
 
-type UserTableAPI = TableAPI<User>;
+export type UserTableAPI = TableAPI<User>;
 export type UserCtx = {
   state: UserTableAPI;
   methods: Record<string, Function>;

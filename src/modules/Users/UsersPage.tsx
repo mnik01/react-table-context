@@ -1,9 +1,9 @@
-import { useReducer } from 'react';
+import { FC, useReducer } from 'react';
+import { UsersTable } from '../Users/Components/UsersTable';
 import { reducer } from './reducer';
-import { UsersTable } from './UsersTable';
 import { UserTableContext, userTableCtxInitial } from './UserTableContext';
 
-function UsersPage() {
+export const UsersPage: FC = () => {
   const [state, dispatch] = useReducer(reducer, userTableCtxInitial.state);
 
   const methods = {};
@@ -21,6 +21,4 @@ function UsersPage() {
       </UserTableContext.Provider>
     </div>
   );
-}
-
-export default UsersPage;
+};

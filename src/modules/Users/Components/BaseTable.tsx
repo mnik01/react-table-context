@@ -1,5 +1,4 @@
-import { Sorting, TableDataResponse } from './types';
-import { UserCtx } from './UserTableContext';
+import { UserCtx } from '../../Users/UserTableContext';
 
 export type TableAPI<T> = {
   tableData: TableDataResponse<T>;
@@ -12,6 +11,7 @@ export type TableAPI<T> = {
 };
 
 type BaseTableProps<T> = {
+  fetcher: () => Promise<TableDataResponse<T>>;
   api: UserCtx;
 };
 

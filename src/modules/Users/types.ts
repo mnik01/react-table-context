@@ -1,7 +1,3 @@
-export type TableDataResponse<T> = {
-  count: number;
-  query: Array<T>;
-};
 export type User = {
   id?: string;
   firstName?: string;
@@ -21,4 +17,3 @@ export type User = {
   /** Format: date-time */
   reactivationDateTimeUtc?: string | null;
 };
-export type Sorting = { id: string; desc: boolean };
