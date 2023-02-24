@@ -33,14 +33,10 @@ export const BaseTable = <T extends object>({
   const fetchTableData = async () => {
     dispatch({ type: TableStateActions.SET_IS_LOADING, payload: true });
     const result = await fetcher();
-    const pagesCount = Math.ceil(result.count / pageSize);
-
-    dispatch({ type: TableStateActions.SET_TABLE_DATA, payload: result });
     dispatch({
-      type: TableStateActions.SET_TOTAL_PAGES_COUNT,
-      payload: pagesCount === 0 ? 1 : pagesCount,
+      type: TableStateActions.UPDATE_AFTER_FETCH,
+      payload: result,
     });
-    dispatch({ type: TableStateActions.SET_IS_LOADING, payload: false });
   };
 
   useEffect(() => {
