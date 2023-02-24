@@ -1,10 +1,11 @@
 import { FC, useContext } from 'react';
+import { BaseTable } from '../../../lib/Components/BaseTable';
 import { getUsers } from '../../Users/api';
+import { User } from '../../Users/types';
 import { UserTableContext } from '../../Users/UserTableContext';
-import { BaseTable } from './BaseTable';
 
 export const UsersTable: FC = () => {
   const context = useContext(UserTableContext);
 
-  return <BaseTable fetcher={getUsers} api={context} />;
+  return <BaseTable<User> fetcher={getUsers} api={context} />;
 };

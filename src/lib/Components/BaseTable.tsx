@@ -1,5 +1,3 @@
-import { UserCtx } from '../../Users/UserTableContext';
-
 export type TableAPI<T> = {
   tableData: TableDataResponse<T>;
   sorting: Sorting;
@@ -9,10 +7,14 @@ export type TableAPI<T> = {
   pageSize: number;
   filter: string;
 };
+export type BaseCtx<T> = {
+  state: TableAPI<T>;
+  methods: Record<string, Function>;
+};
 
 type BaseTableProps<T> = {
   fetcher: () => Promise<TableDataResponse<T>>;
-  api: UserCtx;
+  api: BaseCtx<T>;
 };
 
 export const BaseTable = <T extends object>({ api }: BaseTableProps<T>) => {
