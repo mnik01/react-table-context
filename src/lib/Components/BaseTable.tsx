@@ -27,13 +27,20 @@ export const BaseTable = <T extends object>({
   fetcher,
 }: BaseTableProps<T>) => {
   const { state, methods } = api;
-  const { sorting, pageIndex, pageSize } = state;
+  const { sorting, pageIndex, isLoading, tableData, pageSize } = state;
   const { dispatch } = methods;
 
   const fetchTableData = async () => {
     dispatch({ type: TableStateActions.SET_IS_LOADING, payload: true });
+    const result = await fetcher();
+    const pagesCount = Math.ceil(result.count / pageSize);
 
-    await fetcher();
+    dispatch({ type: TableStateActions.SET_TABLE_DATA, payload: result });
+    dispatch({
+      type: TableStateActions.SET_TOTAL_PAGES_COUNT,
+      payload: pagesCount === 0 ? 1 : pagesCount,
+    });
+    dispatch({ type: TableStateActions.SET_IS_LOADING, payload: false });
   };
 
   useEffect(() => {
@@ -42,8 +49,8 @@ export const BaseTable = <T extends object>({
 
   return (
     <div>
-      table:
-      {pageSize}
+      {isLoading && <h1>LOADING...</h1>}
+      {!isLoading && JSON.stringify(tableData.query)}
     </div>
   );
 };
