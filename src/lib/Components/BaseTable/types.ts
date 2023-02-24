@@ -22,3 +22,6 @@ export type BaseTableProps<T> = {
   fetcher: () => Promise<TableDataResponse<T>>;
   api: BaseCtx<T>;
 };
+export type TableImperativeHandlers = {
+  refresh: () => Promise<void>;
+};

@@ -1,15 +1,22 @@
 import { TableStateActions } from './reducer';
-import { BaseTableProps } from './types';
-import { useEffect } from 'react';
+import { BaseTableProps, TableImperativeHandlers } from './types';
+import {
+  ForwardedRef,
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+} from 'react';
 
-export const BaseTable = <T extends { id: string }>({
-  api,
-  fetcher,
-}: BaseTableProps<T>) => {
+const BaseTableInner = <T extends { id: string }>(
+  { api, fetcher }: BaseTableProps<T>,
+  ref?: ForwardedRef<TableImperativeHandlers>
+) => {
   const { state, methods } = api;
   const { sorting, pageIndex, isLoading, tableData, pageSize, selectedRow } =
     state;
   const { dispatch } = methods;
+
+  useImperativeHandle(ref, () => ({ refresh: fetchTableData }));
 
   const fetchTableData = async () => {
     dispatch({ type: TableStateActions.SET_IS_LOADING, payload: true });
@@ -53,3 +60,6 @@ export const BaseTable = <T extends { id: string }>({
     </div>
   );
 };
+export const BaseTable = forwardRef(BaseTableInner) as <T>(
+  props: BaseTableProps<T> & { ref?: ForwardedRef<TableImperativeHandlers> }
+) => ReturnType<typeof BaseTableInner>;

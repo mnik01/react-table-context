@@ -1,7 +1,7 @@
-import { baseTableReducer, TableStateActions } from '@/lib/Components/BaseTable';
+import { baseTableReducer, TableImperativeHandlers, TableStateActions } from '@/lib/Components/BaseTable';
 import { UserTableContext, userTableCtxInitial } from './UserTableContext';
 import { UsersTable } from './Components/UsersTable';
-import { FC, useReducer } from 'react';
+import { FC, useReducer, useRef } from 'react';
 import { User } from './types';
 
 export const UsersPage: FC = () => {
@@ -18,20 +18,30 @@ export const UsersPage: FC = () => {
       dispatch({ type: TableStateActions.SET_SELECTED_ROW, payload: state.tableData.query[0] });
     }
   }
+  const tableRef = useRef<TableImperativeHandlers>(null);
+  
+  const onRefreshClick = () => {
+    if (tableRef.current) {
+      tableRef.current.refresh();
+    }
+  }
 
   return (
     <div>
-      <h1>Users page</h1>
-      <button onClick={onSelectUser}>
-        {state.selectedRow ? 'unselect' : 'set first as selected'}
-      </button>
+      <div className="flex">
+        <h1>Users page</h1>
+        <button onClick={onSelectUser}>
+          {state.selectedRow ? 'unselect' : 'set first as selected'}
+        </button>
+        <button onClick={onRefreshClick}>refresh</button>
+      </div>
       <UserTableContext.Provider
         value={{
           methods,
           state,
         }}
       >
-        <UsersTable />
+        <UsersTable ref={tableRef} />
       </UserTableContext.Provider>
     </div>
   );

@@ -1,3 +1,3 @@
 export { baseTableReducer, TableStateActions } from './reducer';
 export { BaseTable } from './BaseTable';
-export type { TableAPI, BaseCtx } from './types';
+export type { TableAPI, TableImperativeHandlers, BaseCtx } from './types';
