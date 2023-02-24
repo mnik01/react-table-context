@@ -1,5 +1,5 @@
-import { createContext } from 'react';
 import { BaseCtx, TableAPI } from '../../lib/Components/BaseTable';
+import { createContext } from 'react';
 import { User } from './types';
 
 export type UserTableAPI = TableAPI<User>;
@@ -15,8 +15,9 @@ const initialState: UserTableAPI = {
   pageSize: 15,
 };
 
-export const userTableCtxInitial: UserCtx = {
+export const userTableCtxInitial = {
   state: initialState,
   methods: {},
-};
+} as UserCtx;
+
 export const UserTableContext = createContext(userTableCtxInitial);

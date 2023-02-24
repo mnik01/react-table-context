@@ -1,7 +1,6 @@
-import { User } from '../Users/types';
-import { UserTableAPI } from '../Users/UserTableContext';
+import { TableAPI } from '../Components/BaseTable';
 
-enum TableStateActions {
+export enum TableStateActions {
   SET_TABLE_DATA = 'SET_TABLE_DATA',
   SET_SORTING = 'SET_SORTING',
   SET_TOTAL_PAGES_COUNT = 'SET_TOTAL_PAGES_COUNT',
@@ -10,7 +9,7 @@ enum TableStateActions {
   SET_PAGE_SIZE = 'SET_PAGE_SIZE',
 }
 
-type Action<T> =
+export type Action<T> =
   | {
       type: typeof TableStateActions.SET_TABLE_DATA;
       payload: TableDataResponse<T>;
@@ -21,10 +20,10 @@ type Action<T> =
   | { type: typeof TableStateActions.SET_IS_LOADING; payload: boolean }
   | { type: typeof TableStateActions.SET_PAGE_SIZE; payload: number };
 
-export const reducer = (
-  state: UserTableAPI,
-  action: Action<User>
-): UserTableAPI => {
+export const baseTableReducer = <T>(
+  state: TableAPI<T>,
+  action: Action<T>
+): TableAPI<T> => {
   switch (action.type) {
     case TableStateActions.SET_TABLE_DATA:
       return { ...state, tableData: action.payload };

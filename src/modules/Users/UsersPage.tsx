@@ -1,12 +1,15 @@
 import { FC, useReducer } from 'react';
+import { baseTableReducer } from '../../lib/Components/reducer';
 import { UsersTable } from '../Users/Components/UsersTable';
-import { reducer } from './reducer';
+import { User } from '../Users/types';
 import { UserTableContext, userTableCtxInitial } from './UserTableContext';
 
 export const UsersPage: FC = () => {
-  const [state, dispatch] = useReducer(reducer, userTableCtxInitial.state);
+  const [state, dispatch] = useReducer(baseTableReducer<User>, userTableCtxInitial.state);
 
-  const methods = {};
+  const methods = {
+    dispatch,
+  };
 
   return (
     <div>
