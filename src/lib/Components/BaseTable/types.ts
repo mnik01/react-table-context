@@ -10,6 +10,7 @@ export type TableAPI<T> = {
   isLoading: boolean;
   pageSize: number;
   filter: string;
+  refreshCount: number;
 };
 export type BaseCtx<T> = {
   state: TableAPI<T>;
@@ -21,7 +22,4 @@ export type BaseCtx<T> = {
 export type BaseTableProps<T> = {
   fetcher: () => Promise<TableDataResponse<T>>;
   api: BaseCtx<T>;
-};
-export type TableImperativeHandlers = {
-  refresh: () => Promise<void>;
 };

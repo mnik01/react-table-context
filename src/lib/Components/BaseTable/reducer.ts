@@ -2,6 +2,7 @@ import type { TableAPI } from './types';
 
 export enum TableStateActions {
   SET_SORTING = 'SET_SORTING',
+  REFRESH = 'REFRESH',
   SET_PAGE_INDEX = 'SET_PAGE_INDEX',
   SET_IS_LOADING = 'SET_IS_LOADING',
   UPDATE_AFTER_FETCH = 'UPDATE_AFTER_FETCH',
@@ -12,6 +13,7 @@ export enum TableStateActions {
 export type Action<T> =
   | { type: TableStateActions.SET_SORTING; payload: Sorting }
   | { type: TableStateActions.SET_PAGE_INDEX; payload: number }
+  | { type: TableStateActions.REFRESH }
   | { type: TableStateActions.SET_SELECTED_ROW; payload: T | null }
   | { type: TableStateActions.SET_IS_LOADING; payload: boolean }
   | {
@@ -31,6 +33,8 @@ export const baseTableReducer = <T>(
       return { ...state, pageIndex: action.payload };
     case TableStateActions.SET_IS_LOADING:
       return { ...state, isLoading: action.payload };
+    case TableStateActions.REFRESH:
+      return { ...state, refreshCount: state.refreshCount + 1 };
     case TableStateActions.SET_PAGE_SIZE:
       return { ...state, pageSize: action.payload };
     case TableStateActions.SET_SELECTED_ROW:

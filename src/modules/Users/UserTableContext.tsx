@@ -13,6 +13,7 @@ const initialState: UserTableAPI = {
   selectedRow: null,
   isLoading: true,
   filter: '',
+  refreshCount: 0,
   pageSize: 15,
 };
 
