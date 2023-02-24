@@ -1,4 +1,4 @@
-import { TableAPI } from '../Components/BaseTable';
+import type { TableAPI } from './types';
 
 export enum TableStateActions {
   SET_SORTING = 'SET_SORTING',

@@ -1,26 +1,6 @@
-import { Dispatch, useEffect } from 'react';
-import { Action, TableStateActions } from '../Components/reducer';
-
-export type TableAPI<T> = {
-  tableData: TableDataResponse<T>;
-  sorting: Sorting;
-  totalPagesCount: number;
-  pageIndex: number;
-  isLoading: boolean;
-  pageSize: number;
-  filter: string;
-};
-export type BaseCtx<T> = {
-  state: TableAPI<T>;
-  methods: Record<string, Function> & {
-    dispatch: Dispatch<Action<T>>;
-  };
-};
-
-type BaseTableProps<T> = {
-  fetcher: () => Promise<TableDataResponse<T>>;
-  api: BaseCtx<T>;
-};
+import { TableStateActions } from './reducer';
+import { BaseTableProps } from './types';
+import { useEffect } from 'react';
 
 export const BaseTable = <T extends { id: string }>({
   api,

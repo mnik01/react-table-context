@@ -1,0 +1,23 @@
+import { Dispatch } from 'react';
+import { Action } from './reducer';
+
+export type TableAPI<T> = {
+  tableData: TableDataResponse<T>;
+  sorting: Sorting;
+  totalPagesCount: number;
+  pageIndex: number;
+  isLoading: boolean;
+  pageSize: number;
+  filter: string;
+};
+export type BaseCtx<T> = {
+  state: TableAPI<T>;
+  methods: Record<string, Function> & {
+    dispatch: Dispatch<Action<T>>;
+  };
+};
+
+export type BaseTableProps<T> = {
+  fetcher: () => Promise<TableDataResponse<T>>;
+  api: BaseCtx<T>;
+};
