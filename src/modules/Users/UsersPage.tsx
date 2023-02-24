@@ -9,7 +9,7 @@ export const UsersPage: FC = () => {
   const [state, dispatch] = useReducer(baseTableReducer<User>, userTableCtxInitial.state);
 
   const methods = {
-    dispatch,
+    dispatch, // Пока что тут только диспатчер для изменения стэйта таблицы. Но в будущем может быть какой-нибудь функционал который что-то триггерт во внешнем мире относительно таблицы
   };
 
   const onSelectUser = () => {
