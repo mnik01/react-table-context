@@ -4,6 +4,7 @@ import { Action } from './reducer';
 export type TableAPI<T> = {
   tableData: TableDataResponse<T>;
   sorting: Sorting;
+  selectedRow: T | null;
   totalPagesCount: number;
   pageIndex: number;
   isLoading: boolean;

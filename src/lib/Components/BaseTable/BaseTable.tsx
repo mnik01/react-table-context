@@ -7,7 +7,8 @@ export const BaseTable = <T extends { id: string }>({
   fetcher,
 }: BaseTableProps<T>) => {
   const { state, methods } = api;
-  const { sorting, pageIndex, isLoading, tableData, pageSize } = state;
+  const { sorting, pageIndex, isLoading, tableData, pageSize, selectedRow } =
+    state;
   const { dispatch } = methods;
 
   const fetchTableData = async () => {
@@ -28,6 +29,11 @@ export const BaseTable = <T extends { id: string }>({
       {isLoading && <h1>LOADING...</h1>}
       {!isLoading && (
         <span className="text-xs">User id: {tableData.query[0].id}</span>
+      )}
+      {selectedRow ? (
+        <p>selected: {selectedRow.id}</p>
+      ) : (
+        <p>there is no selected row</p>
       )}
     </div>
   );

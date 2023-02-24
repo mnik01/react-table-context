@@ -3,6 +3,7 @@ import { baseTableReducer } from '../../lib/Components/BaseTable';
 import { UsersTable } from '../Users/Components/UsersTable';
 import { FC, useReducer } from 'react';
 import { User } from '../Users/types';
+import { TableStateActions } from '../../lib/Components/BaseTable/reducer';
 
 export const UsersPage: FC = () => {
   const [state, dispatch] = useReducer(baseTableReducer<User>, userTableCtxInitial.state);
@@ -11,9 +12,20 @@ export const UsersPage: FC = () => {
     dispatch,
   };
 
+  const onSelectUser = () => {
+    if (state.selectedRow) {
+      dispatch({ type: TableStateActions.SET_SELECTED_ROW, payload: null });
+    } else {
+      dispatch({ type: TableStateActions.SET_SELECTED_ROW, payload: state.tableData.query[0] });
+    }
+  }
+
   return (
     <div>
       <h1>Users page</h1>
+      <button onClick={onSelectUser}>
+        {state.selectedRow ? 'unselect' : 'set first as selected'}
+      </button>
       <UserTableContext.Provider
         value={{
           methods,

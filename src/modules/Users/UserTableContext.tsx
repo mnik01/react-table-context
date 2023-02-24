@@ -10,6 +10,7 @@ const initialState: UserTableAPI = {
   sorting: { id: 'email', desc: false },
   totalPagesCount: 1,
   pageIndex: 1,
+  selectedRow: null,
   isLoading: true,
   filter: '',
   pageSize: 15,

@@ -6,11 +6,13 @@ export enum TableStateActions {
   SET_IS_LOADING = 'SET_IS_LOADING',
   UPDATE_AFTER_FETCH = 'UPDATE_AFTER_FETCH',
   SET_PAGE_SIZE = 'SET_PAGE_SIZE',
+  SET_SELECTED_ROW = 'SET_SELECTED_ROW',
 }
 
 export type Action<T> =
   | { type: TableStateActions.SET_SORTING; payload: Sorting }
   | { type: TableStateActions.SET_PAGE_INDEX; payload: number }
+  | { type: TableStateActions.SET_SELECTED_ROW; payload: T | null }
   | { type: TableStateActions.SET_IS_LOADING; payload: boolean }
   | {
       type: TableStateActions.UPDATE_AFTER_FETCH;
@@ -31,6 +33,8 @@ export const baseTableReducer = <T>(
       return { ...state, isLoading: action.payload };
     case TableStateActions.SET_PAGE_SIZE:
       return { ...state, pageSize: action.payload };
+    case TableStateActions.SET_SELECTED_ROW:
+      return { ...state, selectedRow: action.payload };
     case TableStateActions.UPDATE_AFTER_FETCH:
       return {
         ...state,
