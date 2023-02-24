@@ -1,4 +1,4 @@
-import { BaseCtx, TableAPI } from '../../lib/Components/BaseTable';
+import { BaseCtx, TableAPI } from '@/lib/Components/BaseTable';
 import { createContext } from 'react';
 import { User } from './types';
 

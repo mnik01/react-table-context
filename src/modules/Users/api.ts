@@ -1,4 +1,4 @@
-import { User } from '../Users';
+import { User } from './types';
 
 function timeout(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
